@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>REALTIME FOOTBALL TEEM MANAGEMENT SYSTEM </title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>REALTIME FOOTBALL TEEM MANAGEMENT SYSTEM</h1>
+  <div id="controls">
+    <div>
+      <label for="player-select">Select Player:</label>
+      <select id="player-select"></select>
+    </div>
+    <button id="find-path-btn">Find Shortest Path to Opponent's Goal</button>
+  </div>
+  <div class="main-layout">
+    <div id="messi-list" class="player-list"></div>
+    <div id="field">
+      <canvas id="line-canvas" width="900" height="500"></canvas>
+      <div id="goal-left" class="goal-post"></div>
+      <div id="goal-right" class="goal-post"></div>
+      <div id="center-spot"></div>
+      <div id="penalty-left" class="penalty-box"></div>
+      <div id="penalty-right" class="penalty-box"></div>
+      <div id="goal-area-left" class="goal-area"></div>
+      <div id="goal-area-right" class="goal-area"></div>
+      <div id="penalty-spot-left" class="penalty-spot"></div>
+      <div id="penalty-spot-right" class="penalty-spot"></div>
+      <div id="corner-tl" class="corner-arc"></div>
+      <div id="corner-tr" class="corner-arc"></div>
+      <div id="corner-bl" class="corner-arc"></div>
+      <div id="corner-br" class="corner-arc"></div>
+      <div id="animated-ball" class="ball" style="display:none;"></div>
+    </div>
+    <div id="ronaldo-list" class="player-list"></div>
+  </div>
+  <div id="output"></div>
+  <script src="script.js"></script>
+</body>
+</html>

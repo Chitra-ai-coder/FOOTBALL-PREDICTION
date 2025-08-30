@@ -1,0 +1,296 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0; padding: 0;
+  background: #145214;
+  display: flex; flex-direction: column; align-items: center;
+  color: white;
+  user-select: none;
+}
+h1 {
+  margin: 20px 0 10px;
+}
+.main-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 20px;
+  gap: 24px;
+}
+.player-list {
+  width: 180px;
+  min-height: 300px;
+  background: #1b5e1b;
+  color: #fff;
+  border: 3px solid #fff;
+  border-radius: 16px;
+  box-shadow: 0 0 12px #064006;
+  margin: 0 0;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+.player-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.player-list th, .player-list td {
+  padding: 6px 0;
+  text-align: center;
+  border-bottom: 1px solid #fff2;
+}
+.player-list th {
+  font-size: 18px;
+  color: #ffd700;
+  border-bottom: 2px solid #fff;
+}
+.player-list td.selected-player {
+  background: #ffd700;
+  color: #222;
+  font-weight: bold;
+  box-shadow: 0 0 16px 4px #ffd700;
+  border-radius: 8px;
+  transition: box-shadow 0.2s;
+}
+#field {
+  position: relative;
+  background: repeating-linear-gradient(
+    90deg,
+    #1b5e1b 0px, #1b5e1b 40px, #228B22 40px, #228B22 80px
+  );
+  width: 900px;
+  height: 500px;
+  border: 8px solid #fff;
+  border-radius: 24px;
+  box-shadow: 0 0 40px #064006;
+  margin: 0;
+  overflow: hidden;
+}
+/* Center line */
+#field::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  background: rgba(255,255,255,0.7);
+  z-index: 1;
+}
+/* Center circle */
+#field::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  z-index: 1;
+  background: transparent;
+}
+/* Center spot */
+#center-spot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  z-index: 2;
+}
+/* Penalty boxes */
+.penalty-box {
+  position: absolute;
+  width: 120px;
+  height: 260px;
+  top: 120px;
+  border: 4px solid #fff;
+  background: transparent;
+  z-index: 1;
+}
+#penalty-left {
+  left: 0;
+  border-left: none;
+  border-radius: 0 24px 24px 0;
+}
+#penalty-right {
+  right: 0;
+  border-right: none;
+  border-radius: 24px 0 0 24px;
+}
+/* Goal areas (small boxes) */
+.goal-area {
+  position: absolute;
+  width: 60px;
+  height: 140px;
+  top: 180px;
+  border: 4px solid #fff;
+  background: transparent;
+  z-index: 2;
+}
+#goal-area-left {
+  left: 0;
+  border-left: none;
+  border-radius: 0 16px 16px 0;
+}
+#goal-area-right {
+  right: 0;
+  border-right: none;
+  border-radius: 16px 0 0 16px;
+}
+/* Penalty spots */
+.penalty-spot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  z-index: 2;
+}
+#penalty-spot-left {
+  left: 88px;
+  top: 245px;
+}
+#penalty-spot-right {
+  right: 88px;
+  top: 245px;
+}
+/* Corner arcs */
+.corner-arc {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  z-index: 2;
+}
+#corner-tl { left: -16px; top: -16px; border-right: none; border-bottom: none; }
+#corner-tr { right: -16px; top: -16px; border-left: none; border-bottom: none; }
+#corner-bl { left: -16px; bottom: -16px; border-right: none; border-top: none; }
+#corner-br { right: -16px; bottom: -16px; border-left: none; border-top: none; }
+/* Goal posts */
+.goal-post {
+  position: absolute;
+  width: 20px;
+  height: 120px;
+  background: #fff;
+  top: 190px;
+  border-radius: 4px;
+  box-shadow: 0 0 12px 2px #ffeb3b;
+  z-index: 2;
+}
+#goal-left {
+  left: -8px;
+}
+#goal-right {
+  right: -8px;
+}
+/* Players */
+.player {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid white;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  line-height: 40px;
+  cursor: grab;
+  font-weight: 600;
+  user-select: none;
+  transition: box-shadow 0.2s ease;
+  z-index: 10;
+  background-color: #333;
+}
+.player.messi {
+  background: #7dbff9;
+  border-color: #0863ad;
+  box-shadow: 0 0 10px #4ac8e5aa;
+}
+.player.ronaldo {
+  background: #f44336;
+  border-color: #9b1c0f;
+  box-shadow: 0 0 10px #f44336aa;
+}
+.player.dragging {
+  cursor: grabbing;
+  opacity: 0.8;
+  box-shadow: 0 0 25px 5px yellow !important;
+}
+.player.selected {
+  box-shadow: 0 0 20px 4px yellow !important;
+}
+/* Controls */
+#controls {
+  width: 900px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+}
+select, button {
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+select {
+  width: 280px;
+}
+button {
+  background: #2196f3;
+  color: white;
+  box-shadow: 0 3px 8px #0b6dc9;
+  transition: background 0.3s ease;
+}
+button:hover {
+  background: #0b6dc9;
+}
+#output {
+  width: 900px;
+  font-size: 18px;
+  font-weight: 600;
+  min-height: 28px;
+  color: #fff;
+  text-align: center;
+}
+#line-canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+.ball {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  z-index: 20;
+  pointer-events: none;
+  background: none;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+.ball::before {
+  content: "⚽";
+  font-size: 28px;
+  display: block;
+}
